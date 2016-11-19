@@ -21,28 +21,19 @@ function Bill() {
         this.diners.push(diners);
     };
     this.total = function() {
-        var result = 0;
+        result = {};
+        result.total = 0;
+        result.tip = 0;
+        result.grandTotal = 0;
         for (var i = 0; i < this.diners.length; i++) {
-            result += this.diners[i].total;
+            result.total += this.diners[i].total;
+            result.tip += this.diners[i].tip;
+            result.grandTotal += this.diners[i].tip + this.diners[i].total + this.diners[i].tax;
         }
-        console.log(result);
-        return result;
-    };
-    this.tip = function() {
-        var result = 0;
-        for (var i = 0; i < this.diners.length; i++) {
-            result += this.diners[i].tip;
-        }
-        console.log(result);
-        return result;
-    };
-    this.breakdown = function() {
-        var result = 0;
-        for (var i = 0; i < this.diners.length; i++) {
-            result += this.diners[i].tip + this.diners[i].total + this.diners[i].tax;
-        }
-        console.log(result);
-        return result;
+        console.log(result.total);
+        console.log(result.tip);
+        console.log(result.grandTotal);
+        return result
     };
 };
 
@@ -79,8 +70,7 @@ jane.addDish(dish);
 
 // add total to Bill
 group.total();
-group.tip();
-group.breakdown();
+
 
 
 console.log(group);
